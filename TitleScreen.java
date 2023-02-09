@@ -30,11 +30,30 @@ public class TitleScreen extends World
     }
 
     public void act() {
-        
+        addCloud();
+        scenarioStarted = true;
+        if (scenarioStarted == true) {
+            startMusic();
+        }
     }
 
+    /**
+     * Adds in clouds to the world 0.5% of the time and if there are less than
+     * 6 clouds in the world
+     *
+     */
     private void addCloud() {
-        
+        List <Cloud> c = getObjects (Cloud.class);
+        if ((Greenfoot.getRandomNumber (200) < 1) && (c.size() < 6)) {
+            //an int to determine the direction the cloud travels and
+            //where it is added in
+            int cloudDirection = Greenfoot.getRandomNumber (2);
+            if (cloudDirection == 0) {
+                addObject (new Cloud (cloudDirection), 0, Greenfoot.getRandomNumber (GameConstants.WORLD_H/2));
+            } else if (cloudDirection == 1) {
+                addObject (new Cloud (cloudDirection), 1250, Greenfoot.getRandomNumber (GameConstants.WORLD_H/2));
+            }
+        }
     }
 
     public void startMusic() {
