@@ -19,12 +19,37 @@ public class Game extends World {
         checkAddMob();
     }
     
+    /**
+     * Method used to get a list of all mobs and adds in new mobs if the size
+     * of the list is less than 15
+     *
+     */
     private void checkAddMob() {
-        
+        List <Mob> mobs = getObjects(Mob.class);
+        //Add a mob 2% of the time if there is less than 15 mobs in the world
+        if ((Greenfoot.getRandomNumber (50) < 1) && (mobs.size() < 15)) {
+            //ints used to determine what platform the mobs spawn on
+            int y;
+            int groundlvl;
+            if (Greenfoot.getRandomNumber (2) == 0) {
+                y = 90;
+                groundlvl = 1;
+            } else {
+                y = 330;
+                groundlvl = 2;
+            }
+            addObject (new Mob(Greenfoot.getRandomNumber (2), groundlvl), Greenfoot.getRandomNumber (630) + 330, y);
+        }
     }
     
+    /**
+     * Method accessed and used to change the score in the PointsScoreboard 
+     * class
+     *
+     * 
+     */
     public void updateScore(int points) {
-        
+        score.addScore(points);
     }
     
     private void prepare() {
