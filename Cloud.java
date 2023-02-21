@@ -31,11 +31,31 @@ public class Cloud extends Actor
         checkEdge();
     }    
     
+    /**
+     * A method that moves the cloud depending on the direction it is travelling
+     *
+     */
     private void travel() {
-    
+        if (direction == 0) {
+            move (speed);
+        } else if (direction == 1) {
+            move (0-speed);
+        }
     }
     
+    /**
+     * A method that checks to see if the cloud is at the edge
+     * If the cloud is at the edge, it resets the clouds position back to the
+     * side it was on when it was first added
+     *
+     */
     private void checkEdge() {
-        
+        if (isAtEdge()) {
+            if (direction == 0) {
+                setLocation (0, Greenfoot.getRandomNumber (GameConstants.WORLD_H/2));
+            } else {
+                setLocation (1250, Greenfoot.getRandomNumber (GameConstants.WORLD_H/2));
+            }
+        }
     }
 }
