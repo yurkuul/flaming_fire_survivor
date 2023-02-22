@@ -58,4 +58,17 @@ public class Cloud extends Actor
             }
         }
     }
+
+    /**
+     * Changed the built in isAtEdge() boolean to make it so that the boolean
+     * returns true only when the side of the cloud image is at the edge
+     * This makes it so that the cloud resets its position only when the entire
+     * cloud is off the screen, rather than when the middle of the cloud image
+     * reached the edge of the world
+     */
+    @Override
+    public boolean isAtEdge() {
+        return (getX()-getImage().getWidth()/2 > GameConstants.WORLD_W) || 
+        (getX()+getImage().getWidth()/2 < 0);
+    }
 }
