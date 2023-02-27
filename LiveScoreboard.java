@@ -16,7 +16,25 @@ public class LivesScoreboard extends Actor {
         setImage (livesBar [0]);
     }
     
+    /**
+     * A method accessed by the Game world that updates the image based off
+     * of the parameter lives
+     *
+     * 
+     */
     public void updateLivesBar(int lives) {
-        
+        if (lives == 5) {
+            setImage (livesBar [0]);
+        } else if (lives == 4) {
+            setImage (livesBar [1]);
+        } else if (lives == 3) {
+            setImage (livesBar [2]);
+        } else if (lives == 2) {
+            setImage (livesBar [3]);
+        } else if (lives == 1) {
+            setImage (livesBar [4]);
+        } else if (lives == 0) { //If there are no lives left, set the world to EndGame
+            Greenfoot.setWorld (new EndGame());
+        }
     }
 }
