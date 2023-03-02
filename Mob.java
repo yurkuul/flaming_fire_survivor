@@ -65,11 +65,24 @@ public class Mob extends Actor
     }
 
     public void act() {
-
+        currImg++;
+        animate();
     }    
 
+    /**
+     * Method used for animating the mob
+     *
+     */
     private void animate() {
-        
+        if ((mob_state == GameConstants.MOBSTATE_WALKLEFT) || (mob_state == GameConstants.MOBSTATE_CHASEPLAYERLEFT)) {
+            setImage (walkingRightFrames [Math.min(currImg/3 % (walkingRightFrames.length*5), walkingRightFrames.length-1)]);
+        } else if ((mob_state == GameConstants.MOBSTATE_WALKRIGHT) || (mob_state == GameConstants.MOBSTATE_CHASEPLAYERRIGHT)) {
+            setImage (walkingLeftFrames [Math.min(currImg/3 % (walkingLeftFrames.length*5), walkingLeftFrames.length-1)]);
+        } else if (mob_state == GameConstants.MOBSTATE_HIT) {
+            setImage ("MobHit.png");
+        } else if (mob_state == GameConstants.MOBSTATE_DEATH) {
+            setImage (deathFrames [Math.min(currImg/6 % (deathFrames.length*6), deathFrames.length-1)]);
+        }
     }
 
     private void checkStates() {
