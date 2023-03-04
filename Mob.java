@@ -66,6 +66,7 @@ public class Mob extends Actor
 
     public void act() {
         currImg++;
+        checkStates();
         animate();
     }    
 
@@ -85,8 +86,34 @@ public class Mob extends Actor
         }
     }
 
+    /**
+     * A method used to check the mob states and/or sets them and calls 
+     * methods accordingly
+     *
+     */
     private void checkStates() {
-        
+        if (mob_state == GameConstants.MOBSTATE_WALKLEFT || mob_state == GameConstants.MOBSTATE_CHASEPLAYERLEFT) {
+            walkLeft();
+        } else if (mob_state == GameConstants.MOBSTATE_WALKRIGHT || mob_state == GameConstants.MOBSTATE_CHASEPLAYERRIGHT) {
+            walkRight();
+        } else if (mob_state == GameConstants.MOBSTATE_HIT) {
+            hit();
+        }
+        if (isTouching (Barrier.class)) {
+            useBarrier();
+        }
+        checkAggro();
+        //For making mobs swarm the player
+        if (aggro.size() > 0 && Math.random() < 0.05 && !isTouching (Barrier.class)) {
+            if (aggro.get(0).getX() > getX()){
+                mob_state = GameConstants.MOBSTATE_CHASEPLAYERLEFT;
+            } else {
+                mob_state = GameConstants.MOBSTATE_CHASEPLAYERRIGHT;
+            }
+        }
+        if (isTouching (Orb.class)) {
+            mob_state = GameConstants.MOBSTATE_HIT;
+        }
     }
 
     private void useBarrier() {
