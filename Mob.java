@@ -116,8 +116,21 @@ public class Mob extends Actor
         }
     }
 
+    /**
+     * Changes the mob's direction when it runs into a barrier
+     *
+     */
     private void useBarrier() {
-        
+        Barrier b = (Barrier)getOneIntersectingObject (Barrier.class);
+        if (GameConstants.MOBSTATE_WALKLEFT != b.leftSide()) {
+            mob_state = GameConstants.MOBSTATE_WALKRIGHT;
+        } else if (GameConstants.MOBSTATE_WALKRIGHT != b.leftSide()) {
+            mob_state = GameConstants.MOBSTATE_WALKLEFT;
+        } else if ((GameConstants.MOBSTATE_CHASEPLAYERLEFT - GameConstants.MOBSTATE_WALKLEFT) != b.leftSide()) {
+            mob_state = GameConstants.MOBSTATE_WALKRIGHT;
+        }else if ((GameConstants.MOBSTATE_CHASEPLAYERRIGHT - GameConstants.MOBSTATE_WALKRIGHT) != b.leftSide()) {
+            mob_state = GameConstants.MOBSTATE_WALKLEFT;
+        }
     }
 
     
