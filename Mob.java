@@ -134,18 +134,30 @@ public class Mob extends Actor
     }
 
     
+    /**
+     * If the object is in range of the mob, it is added to the aggro list
+     *
+     */
     private void checkAggro() {
-        
+        aggro = getObjectsInRange (100, Player.class);
     }
 
-    
+    /**
+     * For the mob walking left
+     *
+     */
     private void walkLeft() {
-        
+        move (GameConstants.MOB_WALKING_SPEED + bonusSpeed);
     }
 
+    /**
+     * For the mob walking right
+     *
+     */
     private void walkRight() {
-        
+        move (0 - (GameConstants.MOB_WALKING_SPEED + bonusSpeed));
     }
+
 
     private void followPlayer() {
         
