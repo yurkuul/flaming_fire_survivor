@@ -159,8 +159,26 @@ public class Mob extends Actor
     }
 
 
+    /**
+     * A method that checks if the aggro list is not empty and if it is, then
+     * it follows the player, otherwise, it walks around
+     *
+     */
     private void followPlayer() {
-        
+        if (aggro.size() > 0) {
+            move (GameConstants.MOB_WALKING_SPEED);
+        } else if (aggro.size() == 0) {
+            mob_state = GameConstants.MOBSTATE_WALKLEFT;
+        }
+        //Setting the location of the mob back to the proper y level if it
+        //falls off by accident or somehow gets past a barrier
+        if ((getY() != 330) || (getY() != 90)) {
+            if (groundLevel == 2) {
+                setLocation (getX(), 330);
+            } else {
+                setLocation (getX(), 90);
+            }
+        }
     }
 
     private void hit() {
