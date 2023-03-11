@@ -181,8 +181,20 @@ public class Mob extends Actor
         }
     }
 
+    /**
+     * A method for updating the health bar of the mob and makes it chase the
+     * payer
+     *
+     */
     private void hit() {
-        
+        animationDelay++;
+        if (animationDelay >= 10) {
+            health--;
+            mh.updateHealthBar (health);
+            removeTouching (Orb.class);
+            mob_state = GameConstants.MOBSTATE_CHASEPLAYERRIGHT;
+            animationDelay = 0;
+        }
     }
 
     private void checkDeath() {
