@@ -197,8 +197,30 @@ public class Mob extends Actor
         }
     }
 
+    /**
+     * Adds the health bar to the world if the mob's health is not at 4
+     * If the mob health is at 0, it plays the death animation, fades out, and
+     * gets removed from the world along with the heart bar
+     *
+     */
     private void checkDeath() {
-        
+        if (healthBarAdded == false && health != 4) {
+            healthBarAdded = true;
+            getWorld().addObject (mh, getX(), getY() - 20);
+        }
+        if (health == 0) {
+            mob_state = GameConstants.MOBSTATE_DEATH;
+            animationDelay++ ;
+            if (fade > 0) {
+                fade = fade - 17;
+                getImage().setTransparency (fade);
+            }
+            if (animationDelay >= 20) {
+                ((Game) getWorld()).updateScore (5);
+                getWorld().removeObject (mh);
+                getWorld().removeObject (this);
+            }
+        }
     }
 
     private void moveHealthBar() {
