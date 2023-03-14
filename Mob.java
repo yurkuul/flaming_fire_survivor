@@ -68,6 +68,8 @@ public class Mob extends Actor
         currImg++;
         checkStates();
         animate();
+        moveHealthBar();
+        checkDeath();
     }    
 
     /**
