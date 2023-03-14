@@ -223,7 +223,14 @@ public class Mob extends Actor
         }
     }
 
+    /**
+     * A method used to change the location of the health bar for the mob to
+     * follow the mob
+     *
+     */
     private void moveHealthBar() {
-        
+        if (healthBarAdded == true) {
+            mh.setLocation (getX(), getY() - 20);
+        }
     }
 }
