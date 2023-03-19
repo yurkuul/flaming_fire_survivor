@@ -25,11 +25,18 @@ public class Orb extends Actor
     }
     
     public void act() {
-        
+        currImg++;
+        animateMove();
     }    
 
+    /**
+     * Animates the fire orb
+     *
+     */
     private void animateMove() {
-        
+        move (GameConstants.PLAYER_ATTACK_SPEED);
+        //Modulus helps slow down the orb frames
+        setImage (orbFrames [currImg/GameConstants.PLAYER_ATTACK_SPEED % orbFrames.length]);
     }
 
     private void checkGround() {
