@@ -53,7 +53,14 @@ public class Orb extends Actor
         }
     }
 
+    /**
+     * A method to check the life span of the fire orb
+     * If the lifespan is less than or equal to 0, the orb gets removed
+     *
+     */
     private void checkLifeSpan() {
-        
+        if (lifeSpan <= 0) {
+            ((Game)getWorld()).removeObject (this);
+        }
     }
 }
