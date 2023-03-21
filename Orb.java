@@ -27,6 +27,9 @@ public class Orb extends Actor
     public void act() {
         currImg++;
         animateMove();
+        checkGround();
+        checkLifeSpan();
+        lifeSpan--;
     }    
 
     /**
@@ -39,8 +42,15 @@ public class Orb extends Actor
         setImage (orbFrames [currImg/GameConstants.PLAYER_ATTACK_SPEED % orbFrames.length]);
     }
 
+    /**
+     * A method that checks if the fire orb has touched the ground
+     * If it touched the ground, it gets removed from the world
+     *
+     */
     private void checkGround() {
-        
+        if (isTouching (Ground.class)) {
+            ((Game)getWorld()).removeObject (this);
+        }
     }
 
     private void checkLifeSpan() {
