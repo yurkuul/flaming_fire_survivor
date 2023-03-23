@@ -25,7 +25,25 @@ public class PointsScoreboard extends Actor {
         setImage(pointsBoard);
     }
     
+    /**
+     * A public method accessed by the world that adds points for every kill
+     * a player has
+     */
     public void addScore(int amount) {
-        
+        points = points + amount;
+        //Sets the finalScore in the GameConstants class to the points and
+        //is stored for the EndGame world
+        GameConstants.finalScore = points;
+        GreenfootImage scoreboard = getImage();
+        scoreboard.clear();
+        //Sets the scoreboard to a random colour 5% of the time
+        if (Greenfoot.getRandomNumber (100) < 5) {
+            custom = new Color (Greenfoot.getRandomNumber (100) + 100, Greenfoot.getRandomNumber (100) + 100, Greenfoot.getRandomNumber (100) + 100);
+        }
+        scoreboard.setColor (custom);
+        scoreboard.fill();
+        scoreboard.setColor (Color.WHITE);
+        scoreboard.drawString("Score: " + points, 10, 20);
+        setImage (scoreboard);
     }
 }
