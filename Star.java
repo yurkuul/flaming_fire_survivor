@@ -18,7 +18,19 @@ public class Star extends Actor {
         changeTransparency();
     }    
     
+    /**
+     * Lowers the transparency if it is greater than 0 and sets the 
+     * transparency of the star
+     * If the transparency reaches 0, the transparency resets
+     *
+     */
     private void changeTransparency() {
-        
+        if (transparency > 0) {
+            transparency--;
+            getImage().setTransparency (transparency);
+        } else {
+            transparency = 250;
+            getImage().setTransparency (transparency);
+        }
     }
 }
