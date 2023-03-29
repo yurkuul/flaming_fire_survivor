@@ -26,8 +26,19 @@ public class TitleText extends Actor
     }    
 
 
+    /**
+     * If the actor is clicked, it checks to see if the actor is type 1 (Start
+     * button) or type 2 (Instructions button) and sets the world accordingly
+     *
+     */
     private void checkClicked() {
-        
+        if (Greenfoot.mouseClicked(this)) {
+            if (textType == 1) {
+                Greenfoot.setWorld (new Game());
+            } else {
+                Greenfoot.setWorld (new Instructions());
+            }
+        }
     }
 
     private void checkHover() {
