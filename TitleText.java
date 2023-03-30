@@ -41,7 +41,21 @@ public class TitleText extends Actor
         }
     }
 
+    /**
+     * A method used to check if the mouse is hovering on the actor and changes
+     * the image to a glowed version if it is
+     *
+     */
     private void checkHover() {
-
+        if (Greenfoot.mouseMoved(this) && (textType == 1)) {
+            setImage ("startTextHovered.png");
+        } else if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this) && (textType == 1)) {
+            setImage ("startText.png");
+        }
+        if (Greenfoot.mouseMoved(this) && (textType == 2)) {
+            setImage ("InstructionsTextHovered.png");
+        } else if (Greenfoot.mouseMoved(null) && !Greenfoot.mouseMoved(this) && (textType == 2)) {
+            setImage ("InstructionsText.png");
+        }
     }
 }
