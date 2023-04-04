@@ -24,5 +24,41 @@ public class Player extends Actor {
     private int lives;
     //An int to delay frames
     private int animationDelay;
-    
+
+    /**
+     * Player default constructor:
+     *
+     * Sets the images of the GreenfootImage array lists and scales
+     * them to the right sizes
+     */
+    public Player() {
+        character_state = GameConstants.CHARACTERSTATE_IDLE;
+        lives = 5;
+        GameConstants.LIVES_SCOREBOARD.updateLivesBar (lives);
+        ySpeed = 0;
+        idle [0] = new GreenfootImage ("PlayerIdle.png");
+        idle[0].scale (GameConstants.PLAYER_W, GameConstants.PLAYER_H);
+        setImage (idle [0]);
+        jump [0] = new GreenfootImage ("PlayerJump.png");
+        jump[0].scale (GameConstants.PLAYER_W, GameConstants.PLAYER_H);
+        attack [0] = new GreenfootImage ("PlayerAttack.png");
+        attack[0].scale (GameConstants.PLAYER_W, GameConstants.PLAYER_H);
+        for (int i = 0; i < attack.length-1; i++) {
+            attack [i] = attack [0];
+        }
+        for (int i = 0; i < walkingLeftFrames.length-1; i++) {
+            walkingLeftFrames[i] = new GreenfootImage ("PlayerWalk" + i + ".png");
+            walkingLeftFrames[i].scale (GameConstants.PLAYER_W, GameConstants.PLAYER_H);
+        }
+        walkingLeftFrames [3] = walkingLeftFrames [1];
+        for (int i = 0; i < walkingRightFrames.length; i++) {
+            walkingRightFrames [i] = new GreenfootImage (walkingLeftFrames[i]);
+            walkingRightFrames [i].mirrorHorizontally();
+        }
+        for (int i = 0; i < climbingFrames.length; i++) {
+            climbingFrames [i] = new GreenfootImage ("PlayerClimb" + i + ".png");
+            climbingFrames [i].scale (GameConstants.PLAYER_W, GameConstants.PLAYER_H);
+        }
+    }
+
 }
