@@ -61,4 +61,20 @@ public class Player extends Actor {
         }
     }
 
+    /**
+     * currImg is a counter used for animating the character movements
+     * 
+     * checkInputs() is the method used to check if the character state
+     * is equal to any of the GameConstants character states
+     * 
+     * animateCharacter() is the method used to change the image of the 
+     * character depending on the character state
+     * 
+     */
+    public void act() {
+        currImg++;
+        checkInputs();
+        animateCharacter();
+        checkHit();
+    } 
 }
