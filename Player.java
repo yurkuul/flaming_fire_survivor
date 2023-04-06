@@ -77,4 +77,40 @@ public class Player extends Actor {
         animateCharacter();
         checkHit();
     } 
+
+    /**
+     * A method used to compare the current character state to the 
+     * GameConstants character states and then calls the proper method 
+     * according to the character state
+     *
+     */
+    private void checkInputs() {
+        if (character_state == GameConstants.CHARACTERSTATE_IDLE) {
+            checkIdleInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_WALKINGLEFT) {
+            checkLeftWalkInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_WALKINGRIGHT) {
+            checkRightWalkInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_JUMP) {
+            jump();
+        } else if (character_state == GameConstants.CHARACTERSTATE_JUMPLEFT) {
+            jumpLeft();
+        } else if (character_state == GameConstants.CHARACTERSTATE_JUMPRIGHT) {
+            jumpRight();
+        } else if (character_state == GameConstants.CHARACTERSTATE_FALL) {
+            checkFallInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_FALLLEFT) {
+            checkFallLeftInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_FALLRIGHT) {
+            checkFallRightInput();
+        } else if ((character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_UP) || (character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN)) {
+            checkLadderClimbInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_LADDER_IDLE) {
+            checkLadderIdleInput();
+        } else if (character_state == GameConstants.CHARACTERSTATE_ATTACK) {
+            attack();
+        } else if (character_state == GameConstants.CHARACTERSTATE_HIT) {
+            takeDamage();
+        }
+    }
 }
