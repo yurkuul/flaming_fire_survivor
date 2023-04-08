@@ -113,4 +113,30 @@ public class Player extends Actor {
             takeDamage();
         }
     }
+
+    /**
+     * A method used to compare the current character state to the 
+     * GameConstants character states and then sets the image of the 
+     * character according to the character state
+     *
+     */
+    private void animateCharacter() {
+        if (character_state == GameConstants.CHARACTERSTATE_IDLE) {
+            setImage (idle [0]);
+        } else if (character_state == GameConstants.CHARACTERSTATE_WALKINGLEFT) {
+            setImage (walkingLeftFrames[currImg/GameConstants.PLAYER_ANIMATION_SPEED % walkingLeftFrames.length]);
+        } else if (character_state == GameConstants.CHARACTERSTATE_WALKINGRIGHT) {
+            setImage (walkingRightFrames[currImg/GameConstants.PLAYER_ANIMATION_SPEED % walkingRightFrames.length]);
+        } else if ((character_state == GameConstants.CHARACTERSTATE_JUMP) || (character_state == GameConstants.CHARACTERSTATE_FALL)) {
+            setImage (jump [0]);
+        } else if ((character_state == GameConstants.CHARACTERSTATE_JUMPLEFT) || (character_state == GameConstants.CHARACTERSTATE_FALLLEFT)) {
+            setImage (walkingLeftFrames[0]);
+        } else if ((character_state == GameConstants.CHARACTERSTATE_JUMPRIGHT) || (character_state == GameConstants.CHARACTERSTATE_FALLRIGHT)) {
+            setImage (walkingRightFrames[0]);
+        } else if ((character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_UP) || (character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN)) {
+            setImage (climbingFrames [currImg/GameConstants.PLAYER_CLIMBING_SPEED % climbingFrames.length]);
+        } else if (character_state == GameConstants.CHARACTERSTATE_ATTACK) {
+            setImage (attack [0]);
+        }
+    }
 }
