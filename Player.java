@@ -139,4 +139,31 @@ public class Player extends Actor {
             setImage (attack [0]);
         }
     }
+
+    /**
+     * The idle state is the main state for the player, hence why the
+     * character state is changed when something is done to bring it out of
+     * its idle state
+     * 
+     * This method is used to check for any user input and sets the character
+     * state according to the key/mouse pressed
+     *
+     */
+    private void checkIdleInput() {
+        if (Greenfoot.isKeyDown ("A")) {
+            character_state = GameConstants.CHARACTERSTATE_WALKINGLEFT;
+        } else if (Greenfoot.isKeyDown ("D")) {
+            character_state = GameConstants.CHARACTERSTATE_WALKINGRIGHT;
+        } else if (Greenfoot.isKeyDown ("space") && onGround()) {
+            character_state = GameConstants.CHARACTERSTATE_JUMP;
+        } else if (!onGround()) {
+            character_state = GameConstants.CHARACTERSTATE_FALL;
+        } else if (Greenfoot.isKeyDown ("W") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_UP;
+        }  else if (Greenfoot.isKeyDown ("S") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN;
+        } else if (Greenfoot.mouseClicked (null)) {
+            character_state = GameConstants.CHARACTERSTATE_ATTACK;
+        }
+    }
 }
