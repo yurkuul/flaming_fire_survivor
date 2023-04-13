@@ -166,4 +166,21 @@ public class Player extends Actor {
             character_state = GameConstants.CHARACTERSTATE_ATTACK;
         }
     }
+
+    /**
+     * A method to check input by the user when on the ladder
+     * If input is detected, the character state changes
+     *
+     */
+    private void checkLadderIdleInput() {
+        if (Greenfoot.isKeyDown ("W") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_UP;
+        } else if (Greenfoot.isKeyDown ("S") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN;
+        } else if (Greenfoot.isKeyDown ("space")) {
+            character_state = GameConstants.CHARACTERSTATE_JUMP;
+        } else if (!isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_IDLE;
+        }
+    }
 }
