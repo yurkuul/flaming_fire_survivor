@@ -207,4 +207,26 @@ public class Player extends Actor {
         }
     }
 
+    /**
+     * A method to check input by the user when walking right
+     * If input is detected, the character state changes
+     *
+     */
+    private void checkRightWalkInput() {
+        walkRight();
+        if (!Greenfoot.isKeyDown ("D")) {
+            character_state = GameConstants.CHARACTERSTATE_IDLE;
+        } else if (Greenfoot.isKeyDown ("space")) {
+            character_state = GameConstants.CHARACTERSTATE_JUMPRIGHT;
+        } else if (Greenfoot.isKeyDown ("W") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_UP;
+        } else if (Greenfoot.isKeyDown ("S") && isTouching (Ladder.class)) {
+            character_state = GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN;
+        } else if (Greenfoot.mouseClicked (null)) {
+            character_state = GameConstants.CHARACTERSTATE_ATTACK;
+        }
+        if (!onGround()) {
+            character_state = GameConstants.CHARACTERSTATE_FALLRIGHT;
+        }
+    }
 }
