@@ -229,4 +229,19 @@ public class Player extends Actor {
             character_state = GameConstants.CHARACTERSTATE_FALLRIGHT;
         }
     }
+
+    /**
+     * A method to check input by the user when falling
+     * If input is detected, the character state changes
+     *
+     */
+    private void checkFallInput() {
+        fall();
+        if (onGround()) {
+            character_state = GameConstants.CHARACTERSTATE_IDLE;
+        }
+        if (Greenfoot.mouseClicked (null)) {
+            character_state = GameConstants.CHARACTERSTATE_ATTACK;
+        }
+    }
 }
