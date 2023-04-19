@@ -278,4 +278,21 @@ public class Player extends Actor {
             character_state = GameConstants.CHARACTERSTATE_ATTACK;
         }
     }
+
+    /**
+     * A method to check the character state for climbing ladders specifically
+     * and calls methods accordingly
+     * If input is detected, the character state changes
+     *
+     */
+    private void checkLadderClimbInput() {
+        if (character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_UP) {
+            climbLadderUp();
+        } else if (character_state == GameConstants.CHARACTERSTATE_CLIMBLADDER_DOWN) {
+            climbLadderDown();
+        }
+        if (!Greenfoot.isKeyDown("W")) {
+            character_state = GameConstants.CHARACTERSTATE_LADDER_IDLE;
+        }
+    }
 }
