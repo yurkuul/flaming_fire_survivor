@@ -320,4 +320,33 @@ public class Player extends Actor {
         ySpeed = -15;
         character_state = GameConstants.CHARACTERSTATE_FALL;
     }
+
+    /**
+     * For jumping left
+     *
+     */
+    private void jumpLeft() {
+        ySpeed = GameConstants.PLAYER_JUMPING_STRENGTH;
+        character_state = GameConstants.CHARACTERSTATE_FALLLEFT;
+    }
+
+    /**
+     * For jumping right
+     *
+     */
+    private void jumpRight() {
+        ySpeed = GameConstants.PLAYER_JUMPING_STRENGTH;
+        character_state = GameConstants.CHARACTERSTATE_FALLRIGHT;
+    }
+
+    /**
+     * For regular falling
+     *
+     */
+    private void fall() {
+        if (ySpeed <= 7 ) {
+            ySpeed = ySpeed + GameConstants.WORLD_GRAVITY;
+        }
+        setLocation(getX(), getY() + ySpeed);
+    }
 }
