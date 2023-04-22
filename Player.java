@@ -295,4 +295,29 @@ public class Player extends Actor {
             character_state = GameConstants.CHARACTERSTATE_LADDER_IDLE;
         }
     }
+
+    /**
+     * For walking left
+     *
+     */
+    private void walkLeft() {
+        move (-GameConstants.PLAYER_WALKING_SPEED);
+    }
+
+    /**
+     * For walking right
+     *
+     */
+    private void walkRight() {
+        move (GameConstants.PLAYER_WALKING_SPEED);
+    }
+
+    /**
+     * Method for jumping
+     *
+     */
+    private void jump() {
+        ySpeed = -15;
+        character_state = GameConstants.CHARACTERSTATE_FALL;
+    }
 }
