@@ -349,4 +349,26 @@ public class Player extends Actor {
         }
         setLocation(getX(), getY() + ySpeed);
     }
+
+     /**
+     * For falling left (occurs when "A" was pressed when jumping)
+     *
+     */
+    private void fallLeft() {
+        if (ySpeed <= 5 ) {
+            ySpeed = ySpeed + GameConstants.WORLD_GRAVITY;
+        }
+        setLocation(getX() - GameConstants.PLAYER_FALL_XSPEED, getY() + ySpeed);
+    }
+
+    /**
+     * For falling right (occurs when "D" was pressed when jumping)
+     *
+     */
+    private void fallRight() {
+        if (ySpeed <= 5 ) {
+            ySpeed = ySpeed + GameConstants.WORLD_GRAVITY;
+        }
+        setLocation(getX() + GameConstants.PLAYER_FALL_XSPEED, getY() + ySpeed);
+    }
 }
