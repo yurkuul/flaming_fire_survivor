@@ -371,4 +371,30 @@ public class Player extends Actor {
         }
         setLocation(getX() + GameConstants.PLAYER_FALL_XSPEED, getY() + ySpeed);
     }
+
+    /**
+     * For climbing the ladder up
+     * getOneIntersectingObject is used to set the X value of the player
+     * to the X value of the ladder (so that the player stays in the middle)
+     *
+     */
+    private void climbLadderUp() {
+        Ladder ladder = (Ladder)getOneIntersectingObject (Ladder.class);
+        if (ladder != null) {
+            setLocation (ladder.getX(), getY() - GameConstants.PLAYER_CLIMBING_SPEED);
+        }
+    }
+
+    /**
+     * For going down the ladder
+     * getOneIntersectingObject is used to set the X value of the player
+     * to the X value of the ladder (so that the player stays in the middle)
+     *
+     */
+    private void climbLadderDown() {
+        Ladder ladder = (Ladder)getOneIntersectingObject (Ladder.class);
+        if (ladder != null) {
+            setLocation (ladder.getX(), getY() + GameConstants.PLAYER_CLIMBING_SPEED);
+        }
+    }
 }
