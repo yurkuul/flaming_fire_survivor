@@ -397,4 +397,33 @@ public class Player extends Actor {
             setLocation (ladder.getX(), getY() + GameConstants.PLAYER_CLIMBING_SPEED);
         }
     }
+
+    /**
+     * A method that returns a boolean for if the player is on the ground
+     */
+    private boolean onGround() {
+        Actor under = getOneObjectAtOffset (0, getImage().getHeight()/2, Ground.class);
+        return under != null;
+    }
+
+    /**
+     * A method that gets the X and Y value of the mous and uses it to aim
+     * the fire orb
+     * animationDelay is used to keep the image of the player shooting for a
+     * longer period of time
+     *
+     */
+    private void attack() {
+        MouseInfo m = Greenfoot.getMouseInfo();
+        int mouseX = m.getX();
+        int mouseY = m.getY();
+        animationDelay++;
+        if (animationDelay >= 10) {
+            Orb o = new Orb();
+            ((Game)getWorld()).addObject (o, getX(), getY());
+            o.turnTowards (mouseX, mouseY);
+            character_state = GameConstants.CHARACTERSTATE_IDLE;
+            animationDelay = 0;
+        }
+    }
 }
