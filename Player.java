@@ -426,4 +426,27 @@ public class Player extends Actor {
             animationDelay = 0;
         }
     }
+
+    /**
+     * A method to check if the player is touching a mob
+     *
+     */
+    private void checkHit() {
+        if (isTouching (Mob.class)) {
+            character_state = GameConstants.CHARACTERSTATE_HIT;
+        }
+    }
+
+    /**
+     * A method called if the player has touched a mob
+     * The location is set back to the beginning and the lives scoreboard
+     * is updated
+     *
+     */
+    private void takeDamage() {
+        setLocation (49, 623);
+        lives--;
+        GameConstants.LIVES_SCOREBOARD.updateLivesBar (lives);
+        character_state = GameConstants.CHARACTERSTATE_IDLE;
+    }
 }
